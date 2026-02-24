@@ -1,0 +1,91 @@
+<section class="py-20 sm:py-28 bg-surface">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-12 fade-in-up">
+      <h2 class="text-3xl sm:text-4xl font-bold text-dark mb-4">Calculate your ROI</h2>
+      <p class="text-lg text-muted">See what manual consolidation is costing you.</p>
+    </div>
+
+    <div class="fade-in-up bg-white rounded-2xl p-8 border border-border shadow-sm">
+      <div class="grid sm:grid-cols-2 gap-6 mb-8">
+        <div>
+          <label for="roi-entities" class="block text-sm font-medium text-muted mb-1">Entities / subsidiaries</label>
+          <input type="range" id="roi-entities" min="1" max="20" value="3" class="w-full accent-primary" />
+          <div class="text-right text-sm text-muted mt-1"><span id="roi-entities-val">3</span></div>
+        </div>
+        <div>
+          <label for="roi-hours" class="block text-sm font-medium text-muted mb-1">Hours / month on consolidation</label>
+          <input type="range" id="roi-hours" min="5" max="120" value="40" step="5" class="w-full accent-primary" />
+          <div class="text-right text-sm text-muted mt-1"><span id="roi-hours-val">40</span></div>
+        </div>
+        <div>
+          <label for="roi-rate" class="block text-sm font-medium text-muted mb-1">Loaded hourly cost ($)</label>
+          <input type="range" id="roi-rate" min="30" max="200" value="75" step="5" class="w-full accent-primary" />
+          <div class="text-right text-sm text-muted mt-1">$<span id="roi-rate-val">75</span></div>
+        </div>
+        <div>
+          <label for="roi-saved" class="block text-sm font-medium text-muted mb-1">Time saved (%)</label>
+          <input type="range" id="roi-saved" min="10" max="90" value="60" step="5" class="w-full accent-primary" />
+          <div class="text-right text-sm text-muted mt-1"><span id="roi-saved-val">60</span>%</div>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="grid grid-cols-3 gap-4 pt-6 border-t border-border">
+        <div class="text-center">
+          <div class="text-sm text-muted mb-1">Current annual cost</div>
+          <div id="roi-current" class="text-2xl font-bold text-error">$36,000</div>
+        </div>
+        <div class="text-center">
+          <div class="text-sm text-muted mb-1">Annual savings</div>
+          <div id="roi-savings" class="text-2xl font-bold text-success">$21,600</div>
+        </div>
+        <div class="text-center">
+          <div class="text-sm text-muted mb-1">Per entity / year</div>
+          <div id="roi-per-entity" class="text-2xl font-bold text-dark">$7,200</div>
+        </div>
+      </div>
+
+      <p id="roi-message" class="mt-6 text-center text-sm font-medium text-primary"></p>
+    </div>
+  </div>
+</section>
+
+<script>
+  function updateROI() {
+    const entities = +(document.getElementById("roi-entities") as HTMLInputElement).value;
+    const hours = +(document.getElementById("roi-hours") as HTMLInputElement).value;
+    const rate = +(document.getElementById("roi-rate") as HTMLInputElement).value;
+    const saved = +(document.getElementById("roi-saved") as HTMLInputElement).value;
+
+    document.getElementById("roi-entities-val")!.textContent = String(entities);
+    document.getElementById("roi-hours-val")!.textContent = String(hours);
+    document.getElementById("roi-rate-val")!.textContent = String(rate);
+    document.getElementById("roi-saved-val")!.textContent = String(saved);
+
+    const annual = hours * rate * 12;
+    const savings = annual * (saved / 100);
+    const perEntity = Math.round(savings / entities);
+
+    const fmt = (n: number) => "$" + n.toLocaleString("en-US");
+
+    document.getElementById("roi-current")!.textContent = fmt(annual);
+    document.getElementById("roi-savings")!.textContent = fmt(Math.round(savings));
+    document.getElementById("roi-per-entity")!.textContent = fmt(perEntity);
+
+    const msg = document.getElementById("roi-message")!;
+    if (savings >= 20000) {
+      msg.textContent = `That's the cost of the problem - let's talk about what solving it is worth. ${fmt(Math.round(savings))}/yr`;
+    } else if (savings >= 5000) {
+      msg.textContent = `${fmt(Math.round(savings))}/yr recoverable. No implementation cost, no IT, cancel anytime.`;
+    } else {
+      msg.textContent = "";
+    }
+  }
+
+  document.querySelectorAll("[id^='roi-']").forEach((el) => {
+    if (el instanceof HTMLInputElement) {
+      el.addEventListener("input", updateROI);
+    }
+  });
+  updateROI();
+</script>

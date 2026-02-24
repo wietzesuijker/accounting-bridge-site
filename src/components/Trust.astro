@@ -1,0 +1,80 @@
+<section id="trust" class="py-20 sm:py-28 bg-dark text-white">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-16 fade-in-up">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4">Built for trust</h2>
+      <p class="text-lg text-white/60 max-w-xl mx-auto">
+        Finance teams don't adopt tools they can't verify.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
+      <!-- No AI -->
+      <div class="fade-in-up rounded-2xl p-8 bg-white/5 border border-white/10">
+        <div class="text-3xl mb-4" aria-hidden="true">&#x1F512;</div>
+        <h3 class="text-xl font-bold mb-3">No AI in the data pipeline</h3>
+        <p class="text-white/60 leading-relaxed mb-4">
+          Deterministic engine. Same input = same output. Always.
+        </p>
+        <p class="text-sm text-white/40 leading-relaxed">
+          Column matching, account mapping, FX conversion, and IC elimination all use rule-based logic.
+          AI narrative summaries (optional, off by default) are clearly labelled and never touch your source data.
+        </p>
+      </div>
+
+      <!-- Audit trail -->
+      <div class="fade-in-up rounded-2xl p-8 bg-white/5 border border-white/10">
+        <div class="text-3xl mb-4" aria-hidden="true">&#x1F50D;</div>
+        <h3 class="text-xl font-bold mb-3">Full audit trail</h3>
+        <p class="text-white/60 leading-relaxed mb-4">
+          Every output number traces to source file + row number.
+        </p>
+        <!-- Sample audit table -->
+        <div class="text-xs font-mono bg-white/5 rounded-lg p-3 overflow-x-auto">
+          <table class="w-full text-white/50">
+            <thead>
+              <tr class="text-white/30 border-b border-white/10">
+                <th class="text-left pb-2 pr-3">Account</th>
+                <th class="text-right pb-2 pr-3">CAD</th>
+                <th class="text-left pb-2 pr-3">Entity</th>
+                <th class="text-left pb-2">Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-white/5">
+                <td class="py-1.5 pr-3">4100 Revenue</td>
+                <td class="text-right pr-3">842,000</td>
+                <td class="pr-3">HQ</td>
+                <td>hq.csv:47</td>
+              </tr>
+              <tr class="border-b border-white/5">
+                <td class="py-1.5 pr-3">5100 COGS</td>
+                <td class="text-right pr-3">(336,800)</td>
+                <td class="pr-3">US Ops</td>
+                <td>us.csv:23</td>
+              </tr>
+              <tr>
+                <td class="py-1.5 pr-3">1900 IC Recv</td>
+                <td class="text-right pr-3">50,000</td>
+                <td class="pr-3">HQ</td>
+                <td>hq.csv:61</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Zero retention -->
+      <div class="fade-in-up rounded-2xl p-8 bg-white/5 border border-white/10">
+        <div class="text-3xl mb-4" aria-hidden="true">&#x1F5D1;</div>
+        <h3 class="text-xl font-bold mb-3">Zero data retention</h3>
+        <p class="text-white/60 leading-relaxed mb-4">
+          Files processed in memory, never written to disk. Only your column mapping config is saved.
+        </p>
+        <p class="text-sm text-white/40 leading-relaxed">
+          In-memory processing, TLS 1.2+ encryption in transit, Supabase backend on AWS with AES-256 at rest.
+          SOC 2 Type II on roadmap.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

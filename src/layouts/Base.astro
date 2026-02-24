@@ -1,0 +1,65 @@
+---
+import '../styles/global.css'
+
+interface Props {
+  title: string
+  description?: string
+  canonical?: string
+}
+
+const {
+  title,
+  description = "10 minutes instead of 10 hours. Consolidate trial balances from any ERP, any format, any language. Full audit trail, Excel out.",
+  canonical
+} = Astro.props
+
+const siteUrl = "https://accounting-bridge.com"
+const ogImage = `${siteUrl}/og-image.png`
+---
+
+<!doctype html>
+<html lang="en" class="antialiased">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+
+    <!-- OpenGraph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={canonical || siteUrl} />
+    <meta property="og:site_name" content="Accounting Bridge" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+  </head>
+  <body class="bg-white text-text font-sans">
+    <slot />
+
+    <!-- Scroll animation observer -->
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+      document.querySelectorAll(".fade-in-up").forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>

@@ -1,17 +1,30 @@
 ---
-
+import Base from '../layouts/Base.astro'
+import Header from '../components/Header.astro'
+import Hero from '../components/Hero.astro'
+import HowItWorks from '../components/HowItWorks.astro'
+import BeforeAfter from '../components/BeforeAfter.astro'
+import Trust from '../components/Trust.astro'
+import Comparison from '../components/Comparison.astro'
+import ROICalc from '../components/ROICalc.astro'
+import Pricing from '../components/Pricing.astro'
+import FAQ from '../components/FAQ.astro'
+import CTA from '../components/CTA.astro'
+import Footer from '../components/Footer.astro'
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Base title="Accounting Bridge - 10 minutes instead of 10 hours">
+  <Header />
+  <main>
+    <Hero />
+    <HowItWorks />
+    <BeforeAfter />
+    <Trust />
+    <Comparison />
+    <ROICalc />
+    <Pricing />
+    <FAQ />
+    <CTA />
+  </main>
+  <Footer />
+</Base>
