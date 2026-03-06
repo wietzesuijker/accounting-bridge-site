@@ -9,6 +9,16 @@ const APP_URL = "https://app.accounting-bridge.com"
       <p class="text-lg text-muted max-w-xl mx-auto">
         30-day free trial on all plans. No implementation cost. No IT. Cancel anytime.
       </p>
+
+      <!-- Monthly / Annual toggle -->
+      <div class="mt-6 inline-flex items-center gap-1 bg-surface rounded-full p-1">
+        <button id="btn-monthly" class="px-4 py-1.5 text-sm font-semibold rounded-full bg-white text-dark shadow-sm transition-all">
+          Monthly
+        </button>
+        <button id="btn-annual" class="px-4 py-1.5 text-sm font-semibold rounded-full text-muted transition-all">
+          Annual <span class="text-xs font-bold text-primary ml-1">Save 20%</span>
+        </button>
+      </div>
     </div>
 
     <div class="grid md:grid-cols-3 gap-8 lg:gap-6 mt-16">
@@ -16,8 +26,9 @@ const APP_URL = "https://app.accounting-bridge.com"
       <div class="fade-in-up rounded-2xl p-8 bg-white border border-border shadow-sm flex flex-col">
         <h3 class="text-lg font-bold text-dark">Solo</h3>
         <div class="mt-4 mb-2">
-          <span class="text-4xl font-extrabold text-dark">$49</span>
+          <span class="price-amount text-4xl font-extrabold text-dark" data-monthly="$49" data-annual="$39">$49</span>
           <span class="text-muted">/mo</span>
+          <span class="billing-note text-xs text-muted block mt-1 min-h-[1rem]" data-monthly=" " data-annual="billed annually ($468/yr)"> </span>
         </div>
         <p class="text-sm text-muted mb-8">One person, one consolidation. Excel in, Excel out.</p>
         <ul class="space-y-3 text-sm text-muted mb-8 flex-grow">
@@ -40,8 +51,9 @@ const APP_URL = "https://app.accounting-bridge.com"
         </div>
         <h3 class="text-lg font-bold text-dark">Team</h3>
         <div class="mt-4 mb-2">
-          <span class="text-4xl font-extrabold text-dark">$99</span>
+          <span class="price-amount text-4xl font-extrabold text-dark" data-monthly="$99" data-annual="$79">$99</span>
           <span class="text-muted">/mo</span>
+          <span class="billing-note text-xs text-muted block mt-1 min-h-[1rem]" data-monthly=" " data-annual="billed annually ($948/yr)"> </span>
         </div>
         <p class="text-sm text-muted mb-8">Stop chasing files across entities. One consolidated TB, audit-ready, every month.</p>
         <ul class="space-y-3 text-sm text-muted mb-8 flex-grow">
@@ -61,8 +73,9 @@ const APP_URL = "https://app.accounting-bridge.com"
       <div class="fade-in-up rounded-2xl p-8 bg-white border border-border shadow-sm flex flex-col">
         <h3 class="text-lg font-bold text-dark">Scale</h3>
         <div class="mt-4 mb-2">
-          <span class="text-4xl font-extrabold text-dark">$249</span>
+          <span class="price-amount text-4xl font-extrabold text-dark" data-monthly="$249" data-annual="$199">$249</span>
           <span class="text-muted">/mo</span>
+          <span class="billing-note text-xs text-muted block mt-1 min-h-[1rem]" data-monthly=" " data-annual="billed annually ($2,388/yr)"> </span>
         </div>
         <p class="text-sm text-muted mb-8">Roll out across your portfolio. Unlimited entities and users.</p>
         <ul class="space-y-3 text-sm text-muted mb-8 flex-grow">
@@ -89,3 +102,30 @@ const APP_URL = "https://app.accounting-bridge.com"
     </div>
   </div>
 </section>
+
+<script>
+  const btnMonthly = document.getElementById("btn-monthly")!;
+  const btnAnnual = document.getElementById("btn-annual")!;
+  const prices = document.querySelectorAll<HTMLElement>(".price-amount");
+  const notes = document.querySelectorAll<HTMLElement>(".billing-note");
+
+  function setBilling(period: "monthly" | "annual") {
+    prices.forEach((el) => { el.textContent = el.dataset[period]!; });
+    notes.forEach((el) => { el.textContent = el.dataset[period]!; });
+
+    if (period === "annual") {
+      btnAnnual.classList.add("bg-white", "text-dark", "shadow-sm");
+      btnAnnual.classList.remove("text-muted");
+      btnMonthly.classList.remove("bg-white", "text-dark", "shadow-sm");
+      btnMonthly.classList.add("text-muted");
+    } else {
+      btnMonthly.classList.add("bg-white", "text-dark", "shadow-sm");
+      btnMonthly.classList.remove("text-muted");
+      btnAnnual.classList.remove("bg-white", "text-dark", "shadow-sm");
+      btnAnnual.classList.add("text-muted");
+    }
+  }
+
+  btnMonthly.addEventListener("click", () => setBilling("monthly"));
+  btnAnnual.addEventListener("click", () => setBilling("annual"));
+</script>

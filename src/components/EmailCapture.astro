@@ -1,0 +1,37 @@
+---
+const NEWSLETTER_SLUG = "accounting-bridge" // Replace with your Buttondown newsletter slug
+---
+
+<section class="py-16 bg-primary-light">
+  <div class="max-w-2xl mx-auto px-4 sm:px-6 text-center">
+    <h2 class="text-2xl font-bold text-dark mb-2">Month-end consolidation tips</h2>
+    <p class="text-muted mb-6">
+      Get the multi-entity consolidation checklist + practical tips for finance teams. No spam, unsubscribe anytime.
+    </p>
+
+    <form
+      action={`https://buttondown.com/api/emails/embed-subscribe/${NEWSLETTER_SLUG}`}
+      method="post"
+      target="_blank"
+      class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+    >
+      <input
+        type="email"
+        name="email"
+        required
+        placeholder="you@company.com"
+        class="flex-1 px-4 py-3 rounded-lg border border-border bg-white text-dark placeholder:text-muted text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+      />
+      <button
+        type="submit"
+        class="px-6 py-3 bg-primary hover:bg-primary-hover text-white font-semibold text-sm rounded-lg transition-colors whitespace-nowrap"
+      >
+        Get the checklist
+      </button>
+    </form>
+
+    <p class="text-xs text-muted mt-3 opacity-70">
+      Join finance professionals consolidating smarter. Free PDF on signup.
+    </p>
+  </div>
+</section>

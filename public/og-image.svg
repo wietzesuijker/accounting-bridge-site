@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1B73E8"/>
+      <stop offset="100%" stop-color="#0D47A1"/>
+    </linearGradient>
+    <linearGradient id="arch" gradientUnits="userSpaceOnUse" x1="600" y1="280" x2="600" y2="380">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#74BBFF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Bridge logo (centered, larger) -->
+  <g transform="translate(480, 260) scale(3.5)">
+    <path d="M 5,36 Q 25,5 45,36" fill="none" stroke="url(#arch)" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M 25,36 Q 45,5 65,36" fill="none" stroke="url(#arch)" stroke-width="4.5" stroke-linecap="round"/>
+    <rect x="3" y="33" width="66" height="5" rx="2.5" fill="white"/>
+    <rect x="3" y="33" width="5" height="9" rx="2.5" fill="white"/>
+    <rect x="64" y="33" width="5" height="9" rx="2.5" fill="white"/>
+  </g>
+
+  <!-- Title -->
+  <text x="600" y="180" text-anchor="middle" fill="white" font-family="system-ui, -apple-system, sans-serif" font-size="64" font-weight="800" letter-spacing="-1">Accounting Bridge</text>
+
+  <!-- Tagline -->
+  <text x="600" y="500" text-anchor="middle" fill="white" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="600" opacity="0.95">10 minutes instead of 10 hours</text>
+
+  <!-- Subtitle -->
+  <text x="600" y="550" text-anchor="middle" fill="white" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="400" opacity="0.75">Multi-entity trial balance consolidation</text>
+</svg>
